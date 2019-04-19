@@ -6,7 +6,7 @@ public interface LarkService {
 
     void start(String userDescription);
 
-    void success();
+    void success(String userDescription);
 
     void failed();
     

@@ -162,8 +162,9 @@ public class LarkServiceImpl implements LarkService {
     }
 
     @Override
-    public void success() {
-
+    public void success(String userDescription) {
+        shortDescription = userDescription;
+        logger.info("description:" + userDescription);
         if (onSuccess) {
             logger.info("send link msg from " + listener.toString());
 
@@ -215,7 +216,7 @@ public class LarkServiceImpl implements LarkService {
 
         body.put("duration", build.getDuration());
 
-        if (StringUtils.equals(type, ONSTART) && shortDescription != null) {
+        if ((StringUtils.equals(type, ONSTART) || StringUtils.equals(type, ONSUCCESS)) && shortDescription != null) {
             body.put("causeby", shortDescription);
         }
         // body.put("usename",userName);//todo 拿不到这个

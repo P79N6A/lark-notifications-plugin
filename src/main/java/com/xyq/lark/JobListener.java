@@ -21,23 +21,14 @@ public class JobListener extends RunListener<AbstractBuild> {
     @Override
     public void onStarted(AbstractBuild r, TaskListener listener) {
 
-        String description=null;
-        CauseAction causeAction = r.getAction(CauseAction.class);
-        if (causeAction!=null){
-            Cause scmCause = causeAction.findCause(SCMTrigger.SCMTriggerCause.class);
-            if (scmCause==null){
-                description =  causeAction.getCauses().get(0).getShortDescription();
-            }
-        }
-
-        getService(r, listener).start(description);
+        getService(r, listener).start(getDescription(r));
     }
 
     @Override
     public void onCompleted(AbstractBuild r, @Nonnull TaskListener listener) {
         Result result = r.getResult();
         if (null != result && result.equals(Result.SUCCESS)) {
-            getService(r, listener).success();
+            getService(r, listener).success(getDescription(r));
         } else if (null != result && result.equals(Result.FAILURE)) {
             getService(r, listener).failed();
         } else {
@@ -54,4 +45,19 @@ public class JobListener extends RunListener<AbstractBuild> {
         }
         return null;
     }
+
+    private String getDescription(AbstractBuild r){
+
+        String description=null;
+        CauseAction causeAction = r.getAction(CauseAction.class);
+        if (causeAction!=null){
+            Cause scmCause = causeAction.findCause(SCMTrigger.SCMTriggerCause.class);
+            if (scmCause==null){
+                description =  causeAction.getCauses().get(0).getShortDescription();
+            }
+        }
+        return description;
+    }
+
+
 }

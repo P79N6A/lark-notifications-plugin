@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
     <groupId>com.xyq</groupId>
-    <artifactId>lark-notifications</artifactId>
-    <version>2.33-SNAPSHOT</version>
+    <artifactId>feishu-notifications</artifactId>
+    <version>2.36-SNAPSHOT</version>
     <packaging>hpi</packaging>
 
     <properties>
@@ -28,8 +28,8 @@
         -->
     </properties>
 
-    <name>Lark Plugin</name>
-    <description>Lark Jenkins通知插件</description>
+    <name>Feishu Plugin</name>
+    <description>Feishu Jenkins通知插件</description>
 
     <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
 
@@ -71,9 +71,14 @@
     </pluginRepositories>
     <dependencies>
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.12</version>
+            <version>1.2.31</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins</groupId>

@@ -96,7 +96,7 @@ public class LarkNotifier extends Notifier {
 
         @Override
         public String getDisplayName() {
-            return "lark通知器配置";
+            return "飞书通知器配置";
         }
 
         public String getDefaultURL() {
